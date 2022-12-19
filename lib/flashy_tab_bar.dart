@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 
 class FlashyTabBar extends StatelessWidget {
@@ -6,17 +5,16 @@ class FlashyTabBar extends StatelessWidget {
   final double height;
 
   final double iconSize;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final bool showElevation;
   final Duration animationDuration;
   final Curve animationCurve;
   final List<BoxShadow> shadows;
 
-  final List<FlashyTabBarItem> items;
-  final ValueChanged<int> onItemSelected;
+  final List<FlashyTabBarItem>? items;
+  final ValueChanged<int>? onItemSelected;
 
   FlashyTabBar({
-    Key key,
     this.selectedIndex = 0,
     this.height = 60,
     this.showElevation = true,
@@ -30,12 +28,12 @@ class FlashyTabBar extends StatelessWidget {
         blurRadius: 3,
       ),
     ],
-    @required this.items,
-    @required this.onItemSelected,
+    required this.items,
+    required this.onItemSelected,
   }) {
     assert(items != null);
     assert(height >= 55 && height <= 100);
-    assert(items.length >= 2 && items.length <= 5);
+    assert((items?.length ?? 0) >= 2 && (items?.length ?? 0) <= 5);
     assert(onItemSelected != null);
   }
 
@@ -59,17 +57,17 @@ class FlashyTabBar extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: items.map((item) {
-              var index = items.indexOf(item);
+            children: items!.map((item) {
+              var index = items!.indexOf(item);
               return Expanded(
                 child: GestureDetector(
-                  onTap: () => onItemSelected(index),
+                  onTap: () => onItemSelected!(index),
                   child: _FlashTabBarItem(
                     item: item,
                     tabBarHeight: this.height,
                     iconSize: iconSize,
                     isSelected: index == selectedIndex,
-                    backgroundColor: bg,
+                    backgroundColor: bg!,
                     animationDuration: animationDuration,
                     animationCurve: animationCurve,
                   ),
@@ -91,14 +89,11 @@ class FlashyTabBarItem {
   Color inactiveColor;
 
   FlashyTabBarItem({
-    @required this.icon,
-    @required this.title,
+    required this.icon,
+    required this.title,
     this.activeColor = const Color(0xff272e81),
     this.inactiveColor = const Color(0xff9496c1),
-  }) {
-    assert(icon != null);
-    assert(title != null);
-  }
+  });
 }
 
 class _FlashTabBarItem extends StatelessWidget {
@@ -113,21 +108,13 @@ class _FlashTabBarItem extends StatelessWidget {
   final Curve animationCurve;
 
   const _FlashTabBarItem(
-      {Key key,
-      @required this.item,
-      @required this.isSelected,
-      @required this.tabBarHeight,
-      @required this.backgroundColor,
-      @required this.animationDuration,
-      @required this.animationCurve,
-      @required this.iconSize})
-      : assert(isSelected != null),
-        assert(item != null),
-        assert(backgroundColor != null),
-        assert(animationDuration != null),
-        assert(animationCurve != null),
-        assert(iconSize != null),
-        super(key: key);
+      {required this.item,
+      required this.isSelected,
+      required this.tabBarHeight,
+      required this.backgroundColor,
+      required this.animationDuration,
+      required this.animationCurve,
+      required this.iconSize});
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +122,7 @@ class _FlashTabBarItem extends StatelessWidget {
         color: backgroundColor,
         height: double.maxFinite,
         child: Stack(
-          overflow: Overflow.clip,
-          alignment: Alignment.center,
+          clipBehavior: Clip.hardEdge, alignment: Alignment.center,
           children: <Widget>[
             AnimatedAlign(
               duration: animationDuration,

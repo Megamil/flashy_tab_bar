@@ -1,3 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="snhyun.lee.flashy_tab_bar">
 </manifest>
+<meta-data
+android:name="flutterEmbedding"
+android:value="2" />

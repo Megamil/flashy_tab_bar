@@ -1,11 +1,10 @@
 name: flashy_tab_bar
-description: One another nice animated tabbar (Flutter Version) (inspired by https://github.com/Cuberto/flashy-tabbar)
+description: One another nice animated tabbar (Flutter Version) (inspired by https://github.com/Cuberto/flashy-tabbar) (Fork by https://github.com/leesnhyun/flashy_tab_bar)
 version: 0.0.2
-author: SengHyun Lee <leesnhyun@gmail.com>
-homepage: https://github.com/leesnhyun/flashy_tab_bar
+homepage: https://github.com/Megamil/flashy_tab_bar
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.18.5 <3.0.0'
 
 dependencies:
   flutter:
@@ -25,7 +24,6 @@ flutter:
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
   plugin:
-    androidPackage: snhyun.lee.flashy_tab_bar
     pluginClass: FlashyTabBarPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
